@@ -145,7 +145,7 @@ module.exports.updateStatus = async (req, res) => {
 
 module.exports.updateInventory = async (req, res) => {
         const { id } = req.params;
-        const { code, startDate, endDate,color,size,time} = req.body;
+        const { code, startDate, endDate,color,size,time,subName,mainDropdown} = req.body;
     
         // Validate input
         if (!id || !code || !startDate || !endDate || !color || !size || !time) {
@@ -168,7 +168,7 @@ module.exports.updateInventory = async (req, res) => {
         try {
             const updatedData = await Data.findByIdAndUpdate(
                 id,
-                { code,color,size,time, startDate: startDateAsDate, endDate: endDateAsDate },
+                { code,color,size,time, startDate: startDateAsDate, endDate: endDateAsDate,subName,mainDropdown },
                 { new: true, runValidators: true }  // runValidators ensures validation is applied during update
             );
     

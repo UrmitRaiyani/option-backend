@@ -29,10 +29,10 @@ const invoiceSchema = new mongoose.Schema({
         type: String,
     },
     Delivery: {
-        type: String,
+        type: Date,
     },
     Return: {
-        type: String,
+        type: Date,
     },
 });
 
