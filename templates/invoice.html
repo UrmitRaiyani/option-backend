@@ -8,22 +8,23 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 10px; /* Reduced padding */
         }
         .invoice-box {
             max-width: 800px;
             margin: auto;
-            padding: 30px;
+            padding: 20px; /* Reduced padding */
             border: 1px solid #eee;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-            font-size: 16px;
-            line-height: 24px;
+            font-size: 14px; /* Reduced font size */
+            line-height: 20px;
             color: #555;
         }
         .invoice-box table {
             width: 100%;
             line-height: inherit;
             text-align: left;
+            border-collapse: collapse;
         }
         .invoice-box table td {
             padding: 5px;
@@ -36,12 +37,12 @@
             padding-bottom: 20px;
         }
         .invoice-box table tr.top table td.title {
-            font-size: 45px;
-            line-height: 45px;
+            font-size: 30px; /* Reduced logo font size */
+            line-height: 30px;
             color: #333;
         }
         .invoice-box table tr.information table td {
-            padding-bottom: 40px;
+            padding-bottom: 30px; /* Reduced padding */
         }
         .invoice-box table tr.heading td {
             background: #eee;
@@ -49,7 +50,7 @@
             font-weight: bold;
         }
         .invoice-box table tr.details td {
-            padding-bottom: 20px;
+            padding-bottom: 10px; /* Reduced padding */
         }
         .invoice-box table tr.item td {
             border-bottom: 1px solid #eee;
@@ -62,8 +63,19 @@
             font-weight: bold;
         }
         .signature {
-            margin-top: 50px;
+            margin-top: 30px; /* Reduced margin */
             text-align: right;
+        }
+        .signature img {
+            width: 120px; /* Adjusted signature size */
+            height: auto;
+        }
+        /* Prevent page break */
+        .invoice-box {
+            page-break-inside: avoid;
+        }
+        .signature {
+            page-break-inside: avoid;
         }
     </style>
 </head>
@@ -75,7 +87,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="logoSrc" style="width:100%; max-width:400px;">
+                                <img src="logoSrc" style="width:150px; max-width:150px;"> <!-- Reduced logo size -->
                             </td>
                             <td>
                                 Invoice #: {{invoiceNumber}}<br>
@@ -93,7 +105,7 @@
                         <tr>
                             <td>
                                 From Option Shoot-Shervani And Flowerhouse<br>
-                                Krishna Arcade ,2nd Floor<br>
+                                Krishna Arcade, 2nd Floor<br>
                                 Bhesan, Junagadh
                             </td>
                             <td>
@@ -130,7 +142,7 @@
         </table>
         <div class="signature">
             <p>Authorized Signature:</p>
-            <img src="signatureSrc" alt="Signature" width="150px" height="50px">
+            <img src="signatureSrc" alt="Signature">
         </div>
     </div>
 </body>
