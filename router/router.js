@@ -20,6 +20,7 @@ router.post('/addDropdowns', controller.addDropdown);
 // Route to get filtered sub-dropdowns
 router.get('/getSubDropdowns', controller.getFilteredSubDropdowns);
 router.get('/InvoiceData',passport.authenticate('jwt', { session: false }), controller.getInvoiceData);
+router.delete('/invoiceDelete/:id', controller.deleteInvoice);
 
 // Route to add a new sub-dropdown
 router.post('/addSubDropdowns', controller.addSubDropdown);
