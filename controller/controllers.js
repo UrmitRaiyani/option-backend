@@ -356,8 +356,8 @@ module.exports.generateInvoice = async (req, res) => {
         html = html.replace('{{customerName}}', `${invoice.customerName}`);
         html = html.replace('{{mobileNumber}}', `${invoice.mobileNumber}`);
         html = html.replace('{{paymentMethod}}', `${invoice.paymentMethod}`);
-        html = html.replace('{{Return}}', `${invoice.Return}`);
-        html = html.replace('{{Delivery}}', `${invoice.Delivery}`);
+        html = html.replace('{{Return}}', `${invoice.Return.toDateString()}`);
+        html = html.replace('{{Delivery}}', `${invoice.Delivery.toDateString()}`);
 
         // Generate product rows
         let productRows = '';
