@@ -19,6 +19,7 @@ router.get('/getDropdowns', controller.getDropdowns);
 router.post('/addDropdowns', controller.addDropdown);
 // Route to get filtered sub-dropdowns
 router.get('/getSubDropdowns', controller.getFilteredSubDropdowns);
+router.get('/InvoiceData',passport.authenticate('jwt', { session: false }), controller.getInvoiceData);
 
 // Route to add a new sub-dropdown
 router.post('/addSubDropdowns', controller.addSubDropdown);

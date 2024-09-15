@@ -206,7 +206,7 @@ module.exports.deleteData = async (req, res) => {
 // View with Pagination
 module.exports.getRantedInventory = async (req, res) => {
     try {
-        const { page = 1, limit = 20 } = req.query;
+        const { page = 1, limit = 30 } = req.query;
         
         // Convert query params to integers (in case they are passed as strings)
         const pageNum = parseInt(page, 10);
@@ -461,5 +461,42 @@ exports.addSubDropdown = async (req, res) => {
     }
 };
 
+module.exports.getInvoiceData = async (req, res) => {
+    try {
+        const { page = 1, limit = 25} = req.query;
+        
+        // Convert query params to integers (in case they are passed as strings)
+        const pageNum = parseInt(page, 10);
+        const limitNum = parseInt(limit, 10);
+
+        // Fetch data with pagination
+        const data = await Invoice.find()
+            .limit(limitNum)
+            .skip((pageNum - 1) * limitNum)
+            .exec();
+
+        // Get the total count of documents
+      const count = await Invoice.countDocuments();
+      
+  
+      if (!data) {
+        return res.status(404).json({ message: 'Invoice not found' });
+      }
+  
+      // Return the invoice data in the response
+      res.status(200).json({
+        data,
+        totalRecords: count,
+        totalPages: Math.ceil(count / limitNum),
+        currentPage: pageNum,
+        nextPage: pageNum < Math.ceil(count / limitNum) ? pageNum + 1 : null,
+        prevPage: pageNum > 1 ? pageNum - 1 : null,
+        limit: limitNum
+    });
+    } catch (error) {
+      console.error('Error fetching invoice:', error);
+      res.status(500).json({ message: 'Error fetching invoice' });
+    }
+  };
 
 
