@@ -300,6 +300,16 @@ exports.createInvoice = async (req, res) => {
     try {
         const { Pname, Pamount, customerName, mobileNumber, paymentMethod,Return,Delivery } = req.body;
 
+        const format = 'DD/MM/YYYY';
+        const timezone = 'Asia/Kolkata';
+
+        const parsedStartDate = moment.tz(Delivery, format, timezone).startOf('day');
+        const parsedEndDate = moment.tz(Return, format, timezone).endOf('day');
+
+        if (!parsedStartDate.isValid() || !parsedEndDate.isValid()) {
+            return res.status(400).json({ message: "Invalid date format. Please use 'DD/MM/YYYY' format." });
+        }
+        
         if (!Array.isArray(Pname) || Pname.length === 0) {
             return res.status(400).send('Name must be an array with at least one item.');
         }
@@ -317,8 +327,8 @@ exports.createInvoice = async (req, res) => {
             customerName,
             mobileNumber,
             paymentMethod,
-            Return,
-            Delivery
+            Delivery: parsedStartDate.toDate(),
+            Return: parsedEndDate.toDate(),
         });
 
         res.status(201).send(invoice);
