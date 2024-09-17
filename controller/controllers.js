@@ -248,7 +248,7 @@ module.exports.dashboard = async (req, res) => {
     try {
          // Call the update-status API
          const fetch = (await import('node-fetch')).default;
-         const updateResponse = await fetch('http://localhost:8000/update-status', {
+         const updateResponse = await fetch('https://option-backend.onrender.com/update-status', {
              method: 'PUT',
              headers: {
                  'Content-Type': 'application/json',
