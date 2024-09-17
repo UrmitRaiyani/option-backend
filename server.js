@@ -7,11 +7,11 @@ const passportJWT = require('./auth/auth');
 const session = require('express-session');
 const app = express();
 require('dotenv').config();
-const port = 8000;
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded());
 app.use(cors());
+const port = process.env.PORT || 4000;
 
 mongoose.set('strictQuery', false);
 const dbUrl = process.env.MONGODB_URI;
